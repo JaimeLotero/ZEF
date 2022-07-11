@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  zef:
+    image: zef-image
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.app
+    ports:
+      - "6565:6565"
+  db:
+    image: zef-db-image
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.db
+    environment: 
+      - "MYSQL_ROOT_PASSWORD=12345678"
+    ports:
+      - "3306:3306"

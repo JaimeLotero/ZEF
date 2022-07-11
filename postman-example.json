@@ -1,0 +1,371 @@
+{
+	"info": {
+		"_postman_id": "01f97ff1-0597-4a18-b092-03c0d4f6f745",
+		"name": "ZEF",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Currency",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ZEFUser",
+						"value": "admin",
+						"type": "default"
+					},
+					{
+						"key": "ZEFPass",
+						"value": "12345678",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"COP\",\n    \"kuna_ratio\": 0.0001\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOSTNAME}}:{{PORT}}/currency",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"currency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Member",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"member4\",\n    \"name\": \"Member Four\",\n    \"password\": \"some-password\",\n    \"email\": \"member4@test.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOSTNAME}}:{{PORT}}/member",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"member"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Member",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "ZEFUser",
+						"value": "member3",
+						"type": "default"
+					},
+					{
+						"key": "ZEFPass",
+						"value": "123456",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{HOSTNAME}}:{{PORT}}/member",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"member"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Member Balance",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "ZEFUser",
+						"value": "admin",
+						"type": "default"
+					},
+					{
+						"key": "ZEFPass",
+						"value": "12345678",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"member_id\": 3,\n    \"currency\": \"USD\",\n    \"amount\": 2000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOSTNAME}}:{{PORT}}/member/balance",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"member",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Project",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ZEFUser",
+						"value": "member1",
+						"type": "default"
+					},
+					{
+						"key": "ZEFPass",
+						"value": "123456",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"HelloCoin\",\n    \"currency\": \"HELLO\",\n    \"exchange_rate\": 200,\n    \"cap\": 1000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOSTNAME}}:{{PORT}}/project",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Project",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "ZEFUser",
+						"value": "member1",
+						"type": "default"
+					},
+					{
+						"key": "ZEFPass",
+						"value": "123456",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"currency\": \"HELLO\",\n    \"exchange_rate\": 300,\n    \"cap\": 1000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOSTNAME}}:{{PORT}}/project",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Trade",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ZEFUser",
+						"value": "member3",
+						"type": "default"
+					},
+					{
+						"key": "ZEFPass",
+						"value": "123456",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 1000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOSTNAME}}:{{PORT}}/trade/USD/MINT",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"trade",
+						"USD",
+						"MINT"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Withdraw",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ZEFUser",
+						"value": "member3",
+						"type": "default"
+					},
+					{
+						"key": "ZEFPass",
+						"value": "123456",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 1000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOSTNAME}}:{{PORT}}/withdraw/MINT",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"withdraw",
+						"MINT"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Member Balance",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "ZEFUser",
+						"value": "admin",
+						"type": "default"
+					},
+					{
+						"key": "ZEFPass",
+						"value": "12345678",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"member_id\": 3,\n    \"currency\": \"USD\",\n    \"amount\": 2000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOSTNAME}}:{{PORT}}/member/balance",
+					"host": [
+						"{{HOSTNAME}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"member",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HOSTNAME",
+			"value": "localhost",
+			"type": "default"
+		},
+		{
+			"key": "PORT",
+			"value": "6565",
+			"type": "default"
+		}
+	]
+}

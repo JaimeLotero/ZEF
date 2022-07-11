@@ -57,7 +57,7 @@ router.get('/balance' , auth, (req, res) => {
     })
 });
 
-router.put('/balance' , 
+router.put('/balance' , auth,
 [
     body('member_id').isNumeric(),
     body('currency').isAlpha(),
@@ -80,7 +80,7 @@ router.put('/balance' ,
         kuna_ratio = result.kuna_ratio;
         return db_member.get_balance(req.body.member_id);
     }).then((result) => {
-        if (!result) {
+        if (result === null) {
             throw new errors.ZEFError(404, 'Member not found', null)
         }
         return db_member.update_balance(req.body.member_id, result + parseFloat(req.body.amount)*kuna_ratio);
