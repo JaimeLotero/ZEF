@@ -15,6 +15,9 @@ function create_currency (name, kuna_ratio) {
             return resolve();
         }).catch( (err) => {
             if (conn !== undefined) conn.release();
+            if(err.errno === 1062) {
+                return reject(errors.returnZEFError(err, 409, 'Currency already exists', `Tried to create duplicate currency ${name}`));
+            }
             return reject(errors.returnZEFError(err, 500, 'Internal server error', `Error trying to create currency`));
         });
     });
