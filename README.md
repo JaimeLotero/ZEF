@@ -1,8 +1,8 @@
-**ZEF Basic e-coin market**
+# ZEF Basic e-coin market
 
 This project is a rendition of the specification at https://gist.github.com/zrumenjak/dfbd960482918a5ac0edf65c7453a14a
 
-**Install**
+## Install
 
 The only pre-requisites are `docker` and `docker-compose`
 
@@ -12,17 +12,18 @@ The server will listen on port `6565`.
 
 The database is pre-populated with sample values.
 
-**Authentication**
+## Authentication
 
 The project uses a very basic authentication scheme, it retrieves a user and a password from the headers `ZEFUser` and `ZEFPass`, in plain text.
 
 An `admin` user is created upon database start up. Its user is `admin` and the password is `12345678`. This is the only user allowed to perform certain operations, as described below.
 
-**Available endpoints**
+## Available endpoints
 
 All endpoints receive their parameters as JSON.
 
-*POST /member*
+**POST /member**
+
 Create a new ZEF member, this endpoint does not require authentication.
 
 Example body:
@@ -35,7 +36,8 @@ Example body:
 }
 ```
 
-*POST /currency*
+**POST /currency**
+
 Create a currency to top up member balances, only the admin can create currencies.
 
 Example body:
@@ -47,7 +49,8 @@ Example body:
 ```
 
 
-*POST /project*
+**POST /project**
+
 Create a project with an associated e-coin so other members can invest. Only members can create projects.
 
 Example body:
@@ -61,7 +64,8 @@ Example body:
 ```
 
 
-*PUT /project*
+**PUT /project**
+
 Update the investment terms of a project. Only the member that is the owner of the project can perform this operattion.
 The request will return an error if trying to reduce the supply of the currency to an amount smaller than already owned by investors.
 The change in `exchange_rate` does not modify the quantities owned by investors.
@@ -74,7 +78,8 @@ Example body:
 }
 ```
 
-*GET /member*
+**GET /member**
+
 Get all the information for the currently authenticated member, including investments if any. This request does not work for admins.
 
 Example response:
@@ -100,7 +105,8 @@ Example response:
 }
 ```
 
-*GET /member/balance*
+**GET /member/balance**
+
 Get the ZKN balance of the currently authenticated member. This request does not work for admins.
 
 Example response:
@@ -122,7 +128,8 @@ Example body:
 }
 ```
 
-*POST /trade/<currency>/<e-coin>*
+**POST /trade/\<currency\>/\<e-coin\>**
+
 Allows the currently authenticated member to buy e-coins from projects. An investment on the specified `e-coin` will be created with a value equivalent to the amount of `currencty` stated in the body.
 If the member already had an investment on the project, the calculated value will be added to the existing investment.
 The calculated value must not exceed the member's current balance.
@@ -136,7 +143,7 @@ Example body:
 }
 ```
 
-*POST /withdraw/<e-coin>*
+**POST /withdraw/<e-coin>**
 Allows the currently authenticated member to withdraw their investment from a project. An amount of the specified `e-coin` will be withdrawn from the member's investment, and the equivalent ZKN value will be added back to their account balance. This same value will be subtracted from the project owner's ZKN balance.
 The specified amount of e-coin will be added back to the project supply.
 
@@ -150,12 +157,14 @@ Example body:
 }
 ```
 
-**Example**
+## Example
 
 A Postman collection with all these endpoints is provided as an example in the file `postman-example.json`.
 
+This service is deployed and available to test at `server-lotero.duckdns.org:6565`.
 
-**Room for improvement**
+
+## Room for improvement
 
 There are multiple ways in which this project can be improved, but time did not allow for their implementation. Some of them are:
 
